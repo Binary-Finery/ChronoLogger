@@ -17,3 +17,24 @@ A simple utility class to log execution times, typical usage:
  chronoLogger.split("work 3");
  chronoLogger.dump();
 ```
+
+## Installation
+
+Add this into your root build.gradle file:
+
+```java
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+Add the dependency to your module build.gradle:
+
+```java
+dependencies {
+	implementation 'com.github.Binary-Finery:ChronoLogger:v1.0'
+}
+```
