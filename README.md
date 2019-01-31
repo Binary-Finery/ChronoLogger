@@ -8,7 +8,7 @@
 A simple utility class to log execution times, typical usage:
 
 ```java
- ChronoLogger chronoLogger = new ChronoLogger(TAG, LABEL);
+ ChronoLogger chronoLogger = new ChronoLogger(TAG);
  // do work 1
  chronoLogger.split("work 1");
  // do work 2
@@ -35,6 +35,6 @@ Add the dependency to your module build.gradle:
 
 ```java
 dependencies {
-	implementation 'com.github.Binary-Finery:ChronoLogger:v1.0'
+	implementation 'com.github.Binary-Finery:ChronoLogger:v1.0.1'
 }
 ```
