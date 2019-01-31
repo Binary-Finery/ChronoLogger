@@ -7,33 +7,32 @@ import java.util.Locale;
 public class ChronoLogger {
 
     private String tag;
-    private String label;
 
-    private long time_now;
-    private long totalTime = 0;
+    private long prev_time;
+    private long total_time = 0;
 
-    public ChronoLogger(String tag, String label) {
+    public ChronoLogger(String tag) {
         this.tag = tag;
-        this.label = label;
-        this.time_now = getCurrentTimeInMillis();
+        this.prev_time = getTime();
+        Log.d(tag, "start...");
     }
 
     public void split(String splitLabel) {
-        long diff = System.currentTimeMillis() - time_now;
-        appendTotalTime(diff);
-        Log.d(tag, String.format(Locale.getDefault(), "  %dms, %s", diff, splitLabel));
-        time_now = getCurrentTimeInMillis();
+        long time_diff = getTime() - prev_time;
+        appendTotalTime(time_diff);
+        Log.d(tag, String.format(Locale.getDefault(), "  %dms, %s", time_diff, splitLabel));
+        prev_time = getTime();
     }
 
     private void appendTotalTime(long time) {
-        totalTime += time;
+        total_time += time;
     }
 
-    private long getCurrentTimeInMillis() {
+    private long getTime() {
         return System.currentTimeMillis();
     }
 
     public void dump() {
-        Log.d(tag, "dump -> ".concat(String.format(Locale.getDefault(), "%dms (%.2fs)", totalTime, ((double) totalTime / 1000))));
+        Log.d(tag, "dump -> ".concat(String.format(Locale.getDefault(), "%dms (%.2fs)", total_time, ((double) total_time / 1000))));
     }
 }
